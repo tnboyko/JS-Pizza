@@ -219,11 +219,16 @@ var PizzaSize = {
 var Cart = [];
 
 //HTML едемент куди будуть додаватися піци
-var $cart = $("#cart");
+var $cart = $(".orders-list");
+
+//Видалити піци з кошика
+$(".clear-orders-list").click(function() {
+     Cart.length = 0;
+       updateCart();
+});
 
 function addToCart(pizza, size) {
     //Додавання однієї піци в кошик покупок
-
     //Приклад реалізації, можна робити будь-яким іншим способом
     Cart.push({
         pizza: pizza,
@@ -238,7 +243,12 @@ function addToCart(pizza, size) {
 function removeFromCart(cart_item) {
     //Видалити піцу з кошика
     //TODO: треба зробити
-
+    for(var i = 0; i < Cart.length; i++) {
+        if(Cart[i] == cart_item) {
+            Cart.splice(i,1);
+            break;
+        }
+    }
     //Після видалення оновити відображення
     updateCart();
 }
@@ -259,29 +269,53 @@ function getPizzaInCart() {
 function updateCart() {
     //Функція викликається при зміні вмісту кошика
     //Тут можна наприклад показати оновлений кошик на екрані та зберегти вміт кошика в Local Storage
-
     //Очищаємо старі піци в кошику
     $cart.html("");
 
     //Онволення однієї піци
     function showOnePizzaInCart(cart_item) {
-        var html_code = Templates.PizzaCart_OneItem(cart_item);
-
-        var $node = $(html_code);
+        var template = Templates.PizzaCart_OneItem(cart_item);
+        var $node = $(template);
 
         $node.find(".plus").click(function(){
             //Збільшуємо кількість замовлених піц
             cart_item.quantity += 1;
+            //Оновлюємо відображення
+            updateCart();
+        });
 
+        $node.find(".minus").click(function(){
+            if(cart_item.quantity > 1) {
+                cart_item.quantity -= 1;
+            } else {
+                for(var i = 0; i < Cart.length; i++) {
+                    if(Cart[i] == cart_item) {
+                        Cart.splice(i,1);
+                        break;
+                    }
+                }
+            }
+            updateCart();
+        });
+
+        $node.find(".count-clear").click(function(){
+            removeFromCart(cart_item);
             //Оновлюємо відображення
             updateCart();
         });
 
         $cart.append($node);
     }
+    $(".orders-counter-span").text(Cart.length);
+    $(".sum-total").text(function() {
+        var sum = 0;
+        Cart.forEach(function(order) {
+            (order.size == PizzaSize.Small)? sum = sum + order.pizza.small_size.price * order.quantity: sum = sum + order.pizza.big_size.price * order.quantity;
+        })
+        return sum;
+    });
 
     Cart.forEach(showOnePizzaInCart);
-
 }
 
 exports.removeFromCart = removeFromCart;
@@ -312,15 +346,16 @@ function showPizzaList(list) {
 
         var $node = $(html_code);
 
-        $node.find(".buy-big").click(function(){
+        $node.find(".buy-button-big").click(function(){
             PizzaCart.addToCart(pizza, PizzaCart.PizzaSize.Big);
         });
-        $node.find(".buy-small").click(function(){
+        $node.find(".buy-button-small").click(function(){
             PizzaCart.addToCart(pizza, PizzaCart.PizzaSize.Small);
         });
 
         $pizza_list.append($node);
     }
+    $(".pizza-count").text(list.length);
 
     list.forEach(showOnePizza);
 }
@@ -332,7 +367,11 @@ function filterPizza(filter) {
     Pizza_List.forEach(function(pizza){
         //Якщо піка відповідає фільтру
         //pizza_shown.push(pizza);
-
+        var con = pizza.content;
+        for(var key in con) {
+            if(key == filter)
+                pizza_shown.push(pizza);
+        }
         //TODO: зробити фільтри
     });
 
@@ -344,6 +383,53 @@ function initialiseMenu() {
     //Показуємо усі піци
     showPizzaList(Pizza_List)
 }
+
+        $("#filter-button-all-pizza").click(function() {
+            $(".food-name-title").text("Усі піци");
+            $(".active").removeClass("active");
+            $("#filter-button-all-pizza").addClass("active");
+            showPizzaList(Pizza_List);
+        });
+
+        $("#filter-button-meat").click(function() {
+            $(".food-name-title").text("М'ясні піци");
+            $(".active").removeClass("active");
+            $("#filter-button-meat").addClass("active");
+            var filter = "meat";
+            filterPizza(filter);
+        });
+
+        $("#filter-button-pineapples").click(function() {
+            $(".food-name-title").text("Піци з ананасами");
+            $(".active").removeClass("active");
+            $("#filter-button-pineapples").addClass("active");
+            var filter = "pineapples";
+            filterPizza(filter);
+        });
+
+        $("#filter-button-mushrooms").click(function() {
+            $(".food-name-title").text("Піци з грибами");
+            $(".active").removeClass("active");
+            $("#filter-button-mushrooms").addClass("active");
+            var filter = "mushroom";
+            filterPizza(filter);
+        });
+
+        $("#filter-button-ocean").click(function() {
+            $(".food-name-title").text("Піци з морепродуктами");
+            $(".active").removeClass("active");
+            $("#filter-button-ocean").addClass("active");
+            var filter = "ocean";
+            filterPizza(filter);
+        });
+
+        $("#filter-button-tomato").click(function() {
+            $(".food-name-title").text("Вегетаріанські піци");
+            $(".active").removeClass("active");
+            $("#filter-button-tomato").addClass("active");
+            var filter = "tomato";
+            filterPizza(filter);
+        });
 
 exports.filterPizza = filterPizza;
 exports.initialiseMenu = initialiseMenu;
