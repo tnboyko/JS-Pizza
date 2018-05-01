@@ -1,0 +1,25 @@
+@textColor: #fff;
+@fontSize: 15px;
+
+.discount {
+  position: fixed;
+  background-color: lighten(@mainColor, 7%);
+  border-left: 1px solid darken(@mainColor, 10%);
+  border-right: 1px solid darken(@mainColor, 10%);
+  bottom: 0;
+  left: 9px;
+  z-index: 40;
+  width: 90px;
+  padding: 10px;
+  color: @textColor;
+  text-align: center;
+  font-weight: 700;
+  font-size: @fontSize;
+
+  .discount-title {
+    border-bottom: 2px dotted darken(@mainColor, 20%);
+    margin-bottom: 7px;
+    padding-bottom: 3px;
+  }
+
+}

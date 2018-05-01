@@ -1,0 +1,98 @@
+@backgroundColorRight: #fff;
+
+.order-panel {
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding-right: 0;
+  padding-left: 0;
+  box-shadow: rgba(0,0,0,0.2) -3px 3px 10px;
+  z-index: 200;
+  padding-top: 35px;
+  margin-left: 20px;
+  flex-direction: column;
+  width: 320px;
+  height: 100%;
+  background: @backgroundColorRight;
+
+  .orders-head {
+    padding-bottom: 16px;
+    width: 100%;
+    box-sizing: content-box;
+    display: block;
+
+    .orders-head-title {
+      font-size: 20px;
+      line-height: 15px;
+      padding-left: 15px;
+    }
+
+    .clear-orders-list {
+      float: right;
+      margin-top: 5px;
+      cursor: pointer;
+      padding-right: 15px;
+      font-size: 12px;
+      line-height: 12px;
+      color: #707070;
+    }
+  }
+
+  .orders-list {
+    height: 70%;
+    width: 100%;
+    box-sizing: content-box;
+    display: block;
+    margin-top: 15px;
+    background-color: darken(@backgroundColorRight, 5%);
+    }
+
+
+  .orders-sum {
+    padding: 10px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    width: 100%;
+    box-sizing: content-box;
+    display: block;
+
+    .sum-title {
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+
+    .sum-total {
+      font-weight: 700;
+      font-size: 20px;
+      float: right;
+      padding-right: 30px;
+      margin-bottom: 15px;
+    }
+
+    .order-button-buy {
+      padding: 20px;
+      padding-right: 40px;
+    }
+
+    .button-order {
+      background-image: linear-gradient(to right,lighten(@mainColor, 10%) 0,lighten(@mainColor, 5%) 100%);
+    }
+  }
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 12px;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  background-color: #777;
+  border-radius: 10px;
+}
+
+.orange {
+  background-color: lighten(@mainColor, 10%);
+}

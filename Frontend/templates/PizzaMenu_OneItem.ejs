@@ -1,30 +1,25 @@
 <%
-
 function getIngredientsArray(pizza) {
     //Отримує вміст піци
     var content = pizza.content;
     var result = [];
-
     //Object.keys повертає масив ключів в об’єкті JavaScript
-
     Object.keys(content).forEach(function(key){
-
         //a.concat(b) створює спільний масив із масивів a та b
         result = result.concat(content[key]);
     });
-
     return result;
 }
+%>
 
-   %>
-<div class="col-md-6 col-lg-4 pizza-card">
+<div class="col-md-6 col-lg-3 pizza-card">
     <div class="thumbnail">
         <img class="pizza-icon" src="<%= pizza.icon %>" alt="Pizza">
 
         <% if(pizza.is_new) { %>
-        <span class="label label-danger">Нова</span>
+        <h3 class="pizza-label-new"><span class="label label-danger">Нова</span></h3>
         <% } else if(pizza.is_popular) {%>
-        <span class="label label-success">Популярна</span>
+        <h3 class="pizza-label-popular"><span class="label label-success">Популярна</span></h3>
         <% } %>
 
         <div class="caption">
@@ -33,9 +28,48 @@ function getIngredientsArray(pizza) {
             <div class="description">
                 <%= getIngredientsArray(pizza).join(", ") %>
             </div>
-        </div>
 
-        <!-- Перед тим щоб показати кнопку необхідно переконатися, що піца має великий розмір -->
-        <button class="btn btn-primary buy-big">Купити велику</button>
+            <div class="row">
+                <% if(pizza.hasOwnProperty("small_size")) {%>
+                <div class="<%if (pizza.hasOwnProperty("big_size")){%> col-sm-6
+                    <%} else {%> col-sm-12
+                        <% } %> pizza-small">
+                    <div>
+                        <img src="assets/images/size-icon.svg">
+                        <span class="diametr"><%= pizza.small_size.size %></span>
+                    </div>
+                    <div>
+                        <img src="assets/images/weight.svg">
+                        <span class="weight"><%= pizza.small_size.weight %></span>
+                    </div>
+                    <h2>
+                        <div class="price"><%= pizza.small_size.price %><div style="font-size:14px;"> грн.</div></div>
+                    </h2>
+                    <a class="btn btn-warning buy-button-small" role="button">Купити</a>
+                </div>
+                <% } %>
+
+                <% if(pizza.hasOwnProperty("big_size")){%>
+                <div class="<%if (pizza.hasOwnProperty("small_size")){%> col-sm-6
+                <%} else {%> col-sm-12
+                        <%}%> pizza-big">
+                    <div>
+                        <img src="assets/images/size-icon.svg">
+                        <span class="diametr"><%= pizza.big_size.size %></span>
+                    </div>
+
+                    <div>
+                        <img src="assets/images/weight.svg">
+                        <span class="weight"><%= pizza.big_size.weight %></span>
+                    </div>
+
+                    <h2>
+                        <div class="price"><%= pizza.big_size.price %><div style="font-size:14px;"> грн.</div></div>
+                    </h2>
+                    <a class="btn btn-warning  buy-button-big" role="button">Купити</a>
+                </div>
+                <% } %>
+            </div>
+        </div>
     </div>
 </div>
