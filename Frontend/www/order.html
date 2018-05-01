@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pizza</title>
+    <!-- Bootsrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- LESS основний файл -->
+    <link rel="stylesheet/less" type="text/css" href="assets/less/main.less" />
+    <link rel="stylesheet/less" type="text/css" href="assets/less/order.less" />
+    <!-- LESS JavaScript компілятор -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+
+</head>
+<body>
+<div class="navbar navbar-fixed-top top-panel">
+    <div class="logo">
+        <a href="index.html">
+            <div class="logo-title">Pizza</div>
+            <div class="logo-title-kma">KMA</div>
+        </a>
+    </div>
+
+    <div class="top-panel-top-row">
+        <div class="main-top-panel-top-row">
+            <div class="main-top-panel-content phone visible-xs-inline-block visible-sm-inline-block visible-lg-inline-block visible-md-inline-block">
+                <span>(044) 234 56 78</span>
+            </div>
+            <div class="main-top-panel-content workdays visible-lg-inline-block visible-md-inline-block">
+                <span>24 години / 7 днів на тиждень</span>
+            </div>
+            <div class="main-top-panel-content delivery visible-lg-inline-block">
+                <span>Безкоштовна доставка піци</span>
+            </div>
+            <div type="button" class="btn btn-warning sign-in-button">
+                <span>Ввійти</span>
+            </div>
+        </div>
+    </div>
+    <div class="top-panel-bottom-row">
+            <span class="pizza-page">
+                <a href="index.html">Піца</a>
+            </span>
+    </div>
+</div>
+
+<div class="main-container container-fluid">
+    <form class="well form-horizontal" action=" " method="post"  id="contact_form">
+        <fieldset>
+
+            <legend>Контактні дані</legend>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Ім'я та прізвище</label>
+                <div class="col-sm-10 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input  name="first_name" placeholder="Ваше ім'я та прізвище" class="form-control"  type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Номер телефону</label>
+                <div class="col-sm-10 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                        <input name="phone" placeholder="0991231212" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Адреса доставки</label>
+                <div class="col-sm-10 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                        <input name="address" placeholder="Київ, вул. Спаська 2" class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-10 control-label"></label>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-warning" >Далі<span class="glyphicon glyphicon-chevron-right icon-white"></span></button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <div class="col-md-5 order-summary">
+        <div class="bs-callout bs-callout-warning">
+            <h4>Інформація про замовлення</h4>
+            <p class="order-summery-time">
+                <b>Приблизний час доставки:</b> невідомий
+            </p>
+            <p class="order-summery-adress">
+                <b>Адреса доставки:</b> невідома
+            </p>
+        </div>
+    </div>
+</div>
+<div class="google-maps" id="googleMap"></div>
+
+<div id="cart"></div>
+
+<div class="order-panel">
+    <div class="orders-head">
+                    <span class="orders-head-title">
+                        Замовлення
+                        <span class="badge orange orders-counter">0</span>
+                    </span>
+        <span class="clear-orders-list">Очистити замовлення</span>
+    </div>
+
+    <div class="orders-list"></div>
+
+    <div class="orders-sum">
+        <span class="sum-title">Сума замовлення</span>
+        <span class="sum-total">0</span>
+        <div class="order-button-buy">
+            <a href="index.html"><button type="button" class="btn btn-warning btn-lg btn-block button-order">Редагувати замовлення</button></a>
+        </div>
+    </div>
+</div>
+
+
+<div class="discount">
+    <div class="discount-title">
+        <span>ЦЬОГО ТИЖНЯ НА ВСЕ</span>
+    </div>
+    <div class="discount-text">-20%</div>
+</div>
+
+<!-- jQuery JavaScript -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"> </script>
+<script async defer type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC06cPZeOM8QRvBuj6Yl0uUOBf2r9-Weow"></script>
+<!--Bootsrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>
