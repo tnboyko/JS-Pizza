@@ -47,7 +47,101 @@
     display: block;
     margin-top: 15px;
     background-color: darken(@backgroundColorRight, 5%);
+    .order-one {
+      height: 120px;
+      padding: 20px 61px 10px 24px;
+      border-bottom: 1px solid rgba(0,0,0,.1);
+      position: relative;
+      overflow: hidden;
+
+      img {
+        vertical-align: middle;
+        border: 0;
+      }
+
+      .pizza-icon {
+        position: absolute;
+        right: -48px;
+        top: 15px;
+        border-radius: 50% 0 0 50%;
+        max-height: 96px;
+        max-width: 96px;
+      }
+
+      p {
+        margin: 0 0 10px;
+        display: block;
+
+        .pizza-title {
+          line-height: 16px;
+          font-size: 20px;
+          color: lighten(@mainColor, 15%);
+        }
+
+      }
+
+      .order-icons {
+        font-size: 12px;
+        line-height: 16px;
+        margin: 6px 0 8px;
+
+        .gram-image {
+          margin-left: 15px;
+        }
+
+        img {
+          vertical-align: middle;
+        }
+
+      }
+
+      .order-control-panel {
+        font-size: 14px;
+        font-weight: 700;
+
+        .price {
+          margin-right: 10px;
+        }
+
+        .btn-circle {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          padding: 6px 0;
+          font-size: 12px;
+          text-align: center;
+        }
+
+        .btn-danger {
+          background-image: linear-gradient(to bottom,#d9534f 0,#c12e2a 100%);
+          border-color: #b92c28;
+        }
+
+        .label {
+          font-size: 14px;
+          display: inline;
+          padding: 7px;
+          font-weight: 700;
+          text-align: center;
+          white-space: nowrap;
+          color: black;
+        }
+
+        .btn-success {
+          background-color: lightgreen;
+        }
+
+        .count-clear {
+          margin-left: 35px;
+          color: lighten(@mainColor, 10%);
+        }
+
+      }
+
     }
+
+  }
+
 
 
   .orders-sum {

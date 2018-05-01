@@ -28,11 +28,8 @@
     }
   }
 
-  .pizza-list {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    border-bottom: 1px solid #bababa;
+  #pizza_list {
+
     .pizza-card {
       padding-top: 30px;
 
@@ -45,8 +42,8 @@
 
         .pizza-label-new, .pizza-label-popular {
           position: absolute;
-          left: 0;
-          bottom: 0;
+          right: 0;
+          top: 0;
         }
 
         .caption {
@@ -57,7 +54,7 @@
             font-size: 30px;
             color: lighten(@mainColor, 5%);
             font-weight: 700;
-            font-family: "Helvetica Neue";
+            font-family: Arial;
           }
 
           .type {
